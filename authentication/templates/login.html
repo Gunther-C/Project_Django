@@ -1,0 +1,55 @@
+{% extends 'structure.html' %}
+{% load static %}
+
+{% block nav_bar %}
+<nav class="navbar navbar-expand-lg bg-light px-3 py-3">
+    <div class="container-fluid">
+        <h1>Le monde de la critique</h1>
+        <div>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5">
+                <li class="nav-item d-flex align-items-center me-5">
+                    <button type="button" class="btn-project" onclick="location.href='{% url 'auth:registration' %}'">Inscription</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="container text-center py-4">
+    <div class="row justify-content-center">
+        <aside id="asd-index" class="col-md-5">
+            <h2>Connectez-vous</h2>
+            <form action="" method="post" id="form-login" class="mx-auto">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p class="p-submit">
+                    <input type="submit" value="Valider">
+                </p>
+            </form>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="static-alert alert {% if message.tags %} alert-{{ message.tags }} {% endif %} d-flex align-items-center justify-content-center w-75 mx-auto mt-4 px-3 py-1" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 text-{{ message.tags }}"></i>
+                    <div>{{ message }}</div>
+                </div>
+                {% endfor %}
+            {% endif %}
+
+        </aside>
+        <section id="sect-index" class="col-md-7 d-flex justify-content-center align-items-end">
+            <figure class="me-5 pb-5">
+                <img src="{% static 'img/books.png' %}" class="img-fluid" alt="Image d'un livre'">
+            </figure>
+            <figure>
+                <img src="{% static 'img/newspapers.png' %}" class="img-fluid" alt="Image d'un journal">
+            </figure>
+            <figure>
+                <img src="{% static 'img/web.png' %}" class="img-fluid" alt="Image du web">
+            </figure>
+        </section>
+    </div>
+</div>
+{% endblock %}

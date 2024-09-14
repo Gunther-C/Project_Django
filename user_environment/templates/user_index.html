@@ -1,0 +1,33 @@
+{% extends 'structure.html' %}
+{% load static %}
+
+{% block nav_bar %}
+<nav class="navbar navbar-expand-lg fixed-top bg-light px-3">
+    <div class="container-fluid">
+        <h3>Le monde de la critique</h3>
+        <div class="mb-2 mb-lg-0">
+            <div id="content-btn-nav-user" data-type="{{page_type}}">
+                <button type="button" id="flux" class="btn-nav-user btn btn-sm btn-outline-success" onclick="location.href='{% url 'env:user-flux' %}'">Flux</button>
+                <button type="button" id="post" class="btn-nav-user btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'env:user-posts' %}'">Posts</button>
+                <button type="button" id="follow" class="btn-nav-user btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'env:user-follows' %}'">Abonnement</button>
+            </div>
+        </div>
+        <div>
+            <ul class="navbar-nav mb-2 mb-lg-0 pe-5">
+                <li class="nav-item d-flex align-items-center me-5">
+                    <button type="button" class="btn-project" onclick="location.href='{% url 'auth:login' %}'">Déconnexion</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+
+{% block content %}
+<main class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-center align-items-start w-100">
+        {% block user_env %}{% endblock %}
+    </div>
+</main>
+{% endblock %}

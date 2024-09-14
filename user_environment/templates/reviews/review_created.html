@@ -1,0 +1,46 @@
+{% extends 'user_index.html' %}
+
+
+{% block user_env %}
+<a class="arrow-begin" href="{% url 'env:user-flux' %}"> < < < </a>
+
+<div class="container text-center my-5">
+    <div class="d-flex justify-content-center align-items-start mt-5">
+        <div class="w-50 mb-5">
+
+            <h2 class="my-4">Critique</h2>
+
+            <form action="" method="post" enctype="multipart/form-data" id="form-create-review"  class="text-start mx-auto">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                {{ form_ticket.as_p }}
+
+                <div class="mb-4">
+                    <label for="{{ form.title_review.id_for_label }}" class="form-label">{{ form.title_review.label }} :</label>
+                    {{ form.title_review }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.rating.id_for_label }}" class="form-label">{{ form.rating.label }} :</label>
+                    <div class="d-md-flex">
+                        {% for radio in form.rating %}
+                        <div class="d-inline-flex me-5">
+                            <label class="me-1">{{ radio.choice_label }}</label>
+                            {{ radio.tag }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <label for="{{ form.details.id_for_label }}" class="form-label">{{ form.details.label }} :</label>
+                    {{ form.details }}
+                </div>
+
+                <div class="row justify-content-end">
+                    <input type="submit" value="Valider" class="w-25">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}}

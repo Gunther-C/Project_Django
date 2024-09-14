@@ -1,0 +1,4 @@
+.venv/
+/media/
+/verify_flake8_rapport/
+db.sqlite3

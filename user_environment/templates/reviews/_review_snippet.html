@@ -1,0 +1,69 @@
+{% load template_filters %}
+{% load static %}
+
+<section class="sect-viewReview">
+    <header>
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <span class=""><strong>{{ post.user.username }}</strong> a répondu une critique</span>
+            </div>
+            <div>
+                <time class="">Le {{ post.time_created }}</time>
+            </div>
+        </div>
+
+        <h5 class="my-3">{{ post.title_review }}</h5>
+
+        <div class="d-inline-flex">
+        {% for i in 5|range_filter %}
+
+            {% if i < post.rating %}
+                <i class="bi bi-star-fill"></i>
+            {% else %}
+                <i class="bi bi-star"></i>
+            {% endif %}
+
+            {% endfor %}
+        </div>
+
+        {% if post.details %}
+        <p class="mx-auto">{{ post.details }}</p>
+        {% endif %}
+    </header>
+
+    <article class="art-ticket">
+        <header>
+            <div>
+                <span class=""><strong>{{ post.ticket.user.username }}</strong> a fait une critique</span>
+            </div>
+            <div>
+                <time class="">Le {{ post.ticket.time_created }}</time>
+            </div>
+        </header>
+
+        <h5>{{ post.ticket.title }}</h5>
+
+        {% if post.ticket.description %}
+        <p class="mx-auto">{{ post.ticket.description }}</p>
+        {% endif %}
+
+        {% if post.ticket.image %}
+        <figure>
+            <img src="{{ post.ticket.image.url }}" alt="{{ post.ticket.title }}">
+        </figure>
+        {% endif %}
+
+        {% if user.pk != post.user.pk and page_type == 'flux' %}
+            <footer class="row justify-content-end">
+                <button type="button" class="col-md-3 btn-user" onclick="location.href='{% url 'env:crt-rsp-review' post.pk %}'">Créer une critique</button>
+            </footer>
+        </article>
+
+        {% elif page_type == 'post'%}
+        </article>
+            <footer class="row justify-content-end">
+                <button type="button" class="col-md-3 btn-user me-5" onclick="location.href='{% url 'env:upd-review' post.pk %}'">Modifier</button>
+                <button type="button" class="col-md-3 btn-user" onclick="location.href='{% url 'env:del-review' post.pk %}'">Supprimer</button>
+            </footer>
+        {% endif %}
+</section>

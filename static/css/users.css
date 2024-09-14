@@ -1,0 +1,210 @@
+
+/*___ BOUTON RETOUR (flèche) */
+.arrow-begin{
+    display: flex;
+        justify-content: center;
+        align-items: center;
+
+    position: fixed;
+        left: 5%;
+        top: 12%;
+
+    padding: 0 1.3em;
+    background-color: #ffffff;
+    border: solid 0.06em crimson;
+    border-radius: 5px;
+
+    font: normal 0.9em helvetica , sans-serif;
+    text-decoration: none;
+    color: crimson;
+
+    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+    z-index: 15;
+}
+.arrow-begin:hover{
+    border-color: green;
+    color: green;
+    cursor: pointer;
+}
+
+/*___ BALISE FORMULAIRE (modifié: ticket, critique) */
+form > figure {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+    width: 40%;
+    margin-left: 1vh;
+}
+form > figure img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+/*___ SECTION CHEMIN DES VUES (ticket, critique */
+#sect-viewScroll {
+    width: 60%;
+    padding: 2% 5%;
+    background-color: #ffffff;
+    border-left: solid 0.08em brown;
+    border-right: solid 0.08em brown;
+}
+
+#nav-create {
+    position: fixed;
+        top: 0;
+
+    width: 60%;
+    height: 14vh;
+    margin-top: 6vh;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+#nav-create > div {
+    height: 100%;
+    padding-bottom: 4vh;
+    background-color: rgba(245, 203, 142, 0.5);
+}
+
+.hidden-div {
+    width: 60%;
+    height: 14vh;
+    margin-top: 6vh;
+    background-color: #ffffff;
+}
+
+
+/*___ BALISE TICKET */
+article {
+    display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        justify-content: center;
+    width: 100%;
+
+    margin-bottom: 2.5em;
+    padding: 2%;
+    border: solid 0.006em black;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+}
+
+article > header {
+    display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+article > h5 {
+    margin: 2vh 0;
+
+}
+
+article > p {
+    width: 98%;
+    max-height: 18vh;
+    background-color: rgba(236, 244, 253, 0.3);
+    border: solid 0.006em rgba(236, 244, 253, 0.8);
+    border-radius: 4px;
+}
+
+article > figure {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+    width: 25%;
+    margin-left: 0.5em;
+}
+article > figure img {
+    max-width: 100%;
+    max-height: 20vh;
+}
+
+article > footer {
+    display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    width: 100%;
+    margin-top: 2%;
+}
+
+
+/*___ BALISE CRITIQUE */
+.sect-viewReview {
+    display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: center;
+    width: 100%;
+
+    padding: 2%;
+    margin-bottom: 4%;
+
+    border: solid 0.006em black;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: inset 4px 3px 8px 3px rgba(145, 142, 142, 0.5);
+}
+
+.sect-viewReview > header, .sect-viewReview > footer {
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.sect-viewReview > header > p {
+    width: 98%;
+    max-height: 18vh;
+
+    padding: 1%;
+    margin-top: 2vh;
+    background-color: rgba(236, 244, 253, 0.5);
+    border: solid 0.006em rgba(236, 244, 253, 0.8);
+    border-radius: 4px;
+}
+
+.sect-viewReview article {
+    width: 90%;
+
+}
+
+
+/* //___ RECHERCHE D'UN UTILISATEUR */
+#follow-users-searching {
+    width: 98%;
+    max-height: 18vh;
+
+    padding: 1%;
+    background-color: #ffffff;
+    border-radius: 4px;
+
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.follow-create{
+    justify-content: flex-start;
+
+    width: 100%;
+
+    margin-bottom: 0.5em;
+    background-color: rgba(236, 244, 253, 0.5);
+    border: none;
+    box-shadow: unset;
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-shadow: 0.2vh 0.075vw rgba(170, 170, 170, 0.4);
+
+    cursor: pointer !important;
+}
+.follow-create:hover {
+    background-color: rgba(236, 244, 253, 0.5);
+
+}

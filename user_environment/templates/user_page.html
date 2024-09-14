@@ -1,0 +1,42 @@
+{% extends 'user_index.html' %}
+{% load static %}
+
+
+{% block user_env %}
+<nav id="nav-create" class="mx-auto">
+    {% if page_type == 'flux' %}
+    <div class="row justify-content-around align-items-end mx-auto">
+        <div class="col-md-12">
+            {% include '_alerts.html' %}
+        </div>
+        <button type="button" class="col-md-3 btn-user" onclick="location.href='{% url 'env:crt-ticket' %}'">Demander une critique</button>
+        <button type="button" class="col-md-3 btn-user" onclick="location.href='{% url 'env:crt-review' %}'">Créer une critique</button>
+    </div>
+    {% elif page_type == 'post'%}
+    <div class="row justify-content-center align-items-end mx-auto">
+        <div class="col-md-12">
+            {% include '_alerts.html' %}
+        </div>
+        <h1 class="col-md-3 text-center" >Vos Posts</h1>
+    </div>
+    {% endif %}
+</nav>
+
+<div class="hidden-div"></div>
+
+<section id="sect-viewScroll" class="column align-items-center justify-content-start flex-wrap">
+
+    {% for post in posts %}
+
+        {% if post.content_type == 'TICKET' %}
+
+            {% include 'tickets/_ticket_snippet.html' %}
+
+        {% elif post.content_type == 'REVIEW' %}
+
+            {% include 'reviews/_review_snippet.html' %}
+
+        {% endif %}
+    {% endfor %}
+</section>
+{% endblock %}

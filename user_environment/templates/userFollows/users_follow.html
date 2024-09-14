@@ -1,0 +1,66 @@
+{% extends 'user_index.html' %}
+{% load static %}
+
+
+
+{% block user_env %}
+
+<section class="column align-items-center flex-wrap w-50 mb-5 py-5">
+
+    {% include '_alerts.html' %}
+
+    <header class="row justify-content-around align-items-center text-center my-5">
+        <h1>Vos Abonnements</h1>
+    </header>
+
+    <div id="follow_searching" class="w-75 mx-auto my-5" style="height: 25vh;">
+        <h3 class="mb-2">Rechercher des utilisateurs</h3>
+        <form>
+            <input type="text" id="user-searching" name="user-searching" class="form-control" placeholder="minimum 3 caractères">
+        </form>
+    </div>
+
+    {% if following %}
+    <div class="table-responsive-sm">
+        <table class="table table-hover table-bordered border-white">
+            <thead>
+            <tr>
+                <th colspan="2">Les utilisateurs suivis</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for flg in following %}
+            <tr class="w-100">
+                <td class="w-75 text-capitalize align-middle">{{ flg.followed_user.username }}</td>
+                <td class="d-flex justify-content-end vw-25 py-3">
+                    <button type="button" onclick="location.href='{% url 'env:del-follow' flg.followed_user.pk %}'">Désabonner</button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    {% if followed %}
+    <div class="table-responsive-sm">
+        <table class="table table-hover table-bordered border-white" style="margin-top: 15vh;">
+            <thead>
+                <tr>
+                    <th colspan="2">Les utilisateurs qui vous suivent</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fld in followed %}
+                <tr class="w-100">
+                    <td class="w-100 text-capitalize align-middle py-2">{{ fld.user.username }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+</section>
+
+{% endblock %}

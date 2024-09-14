@@ -1,0 +1,44 @@
+{% extends 'user_index.html' %}
+
+
+{% block user_env %}
+<a class="arrow-begin" href="{% url 'env:user-flux' %}"> < < < </a>
+
+<div class="container text-center my-5">
+    <div class="d-flex justify-content-center align-items-start mt-5">
+        <div class="w-50">
+
+            <h2 class="my-4">Ticket</h2>
+            <form action="" method="post" enctype="multipart/form-data" id="form-create-ticket"  class="text-start mx-auto">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <p>
+                    <label for="{{ form.title.id_for_label }}" class="form-label">{{ form.title.label }} :</label>
+                    {{ form.title }}
+                </p>
+
+                <p>
+                    <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }} :</label>
+                    {{ form.description }}
+                </p>
+
+                {% if form.image.initial %}
+                <figure>
+                    <img src="{{ form.image.initial.url }}" alt="">
+                </figure>
+                {% endif %}
+
+                <p>
+                    <label for="{{ form.image.id_for_label }}" class="form-label">{{ form.image.label }} :</label>
+                    {{ form.image }}
+                </p>
+
+                <p class="p-submit">
+                    <input type="submit" value="Valider">
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}}

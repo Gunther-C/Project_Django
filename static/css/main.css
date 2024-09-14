@@ -1,0 +1,157 @@
+
+
+body{ background-color: rgba(245, 203, 142, 0.5); }
+
+.navbar.navbar-expand-lg { border-bottom: solid 0.06em brown; }
+
+h1, h2, h3, th {
+    margin: 0;
+    padding: 0;
+    font-family: 'charm', helvetica , sans-serif;
+    white-space: nowrap;
+}
+
+h1 { font-size: 2.8em; }
+
+h2 { font-size: 2.5em; }
+
+h3 { font-size: 2em; }
+
+th { font-size: 1.6em; }
+
+button, input[type="submit"] {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+
+    min-width: 8vw;
+    padding: 0 1.4em 0.2em 1.4em;
+
+    background-color: #ffffff;
+    border: solid 0.06em transparent;
+    border-radius: 3px;
+
+    white-space: nowrap;
+    box-shadow: 1px 2px 4px rgba(145, 142, 142, 0.854);
+}
+
+p {
+    padding: 1vh;
+    overflow: hidden;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+}
+
+
+
+/*___ TYPE DE BOUTON */
+.btn-project {
+    border-color: crimson;
+    color: crimson;
+}
+.btn-project:hover {
+    color: green;
+    border-color: green;
+    cursor: pointer;
+}
+
+.btn-projectLeft{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+    margin-right: 0.5em;
+}
+.btn-projectRight{
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-left: 0.5em;
+}
+
+
+/*___ TYPE DE LIGNE */
+hr.hr-60{ width: 60%; margin: 0;}
+
+
+
+/*___ PAGE DE DEMARRAGE */
+#sect-index {
+    height: 75vh;
+
+}
+#sect-index > figure {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+
+    width: calc(100% / 4);
+}
+#sect-index > figure > img {
+    max-width: 100%;
+
+}
+
+
+
+/*___ FORMULAIRE : Connexion, inscription */
+#form-login, #form-registration {
+    display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: space-around;
+
+    width: 80%;
+
+    padding: 1em 0;
+    background-color: rgba(245, 203, 142, 0.3);
+    border: solid 0.06em transparent;
+    border-radius: 5px;
+    box-shadow: 1px 2px 4px rgba(145, 142, 142, 0.854);
+}
+
+#form-login { min-height: 23vh; }
+
+#form-registration { min-height: 38vh; }
+
+#form-login > p, #form-registration > p {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+}
+
+.p-submit {
+    display: flex;
+        justify-content: flex-end;
+}
+
+.p-submit > input[type="submit"] { text-align: right }
+
+
+
+
+/*___ MODAL */
+#virtual-modal > .modal-dialog > .modal-content {
+    border-radius: 5px;
+    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+}
+
+.modal-header {
+    height: 10vh;
+
+}
+
+.modal-header > figure {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+    width: calc(100% / 12);
+    padding: 0;
+    margin: 0;
+
+}
+.modal-header > figure > img {
+    max-width: 100%;
+
+}
