@@ -29,13 +29,13 @@ ___
 _Clone du projet_ :
 ####
 ```bash
-  git clone https://github.com/Gunther-C/Project_Chess.git
+  git clone https://github.com/Gunther-C/Project_Django.git
 ```
 ###
 _(download ZIP)_ :
 ####
 ```bash
- https://github.com/Gunther-C/Project_JustStreamIt/archive/refs/heads/master.zip
+ https://github.com/Gunther-C/Project_Django/archive/refs/heads/master.zip
 ```
 ##
 ### Installer l'environement virtuel
