@@ -5,14 +5,21 @@
     <header>
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                <span class=""><strong>{{ post.user.username }}</strong> a répondu une critique</span>
+                <span>
+                    {% if user.pk != post.user.pk %}
+                    <strong class="text-capitalize ">{{ post.user.username }}</strong> a
+                    {% else %}
+                    <strong>Vous</strong> avez
+                    {% endif %}
+                    publié une critique
+                </span>
             </div>
             <div>
-                <time class="">Le {{ post.time_created }}</time>
+                <time>Le {{ post.time_created }}</time>
             </div>
         </div>
 
-        <h5 class="my-3">{{ post.title_review }}</h5>
+        <h5 class="text-capitalize my-3">{{ post.title_review }}</h5>
 
         <div class="d-inline-flex">
         {% for i in 5|range_filter %}
@@ -31,17 +38,14 @@
         {% endif %}
     </header>
 
-    <article class="art-ticket">
+    <article>
         <header>
             <div>
-                <span class=""><strong>{{ post.ticket.user.username }}</strong> a fait une critique</span>
-            </div>
-            <div>
-                <time class="">Le {{ post.ticket.time_created }}</time>
+                <span>Ticket - <strong class="text-capitalize">{{ post.ticket.user.username }}</strong></span>
             </div>
         </header>
 
-        <h5>{{ post.ticket.title }}</h5>
+        <h5 class="text-capitalize">{{ post.ticket.title }}</h5>
 
         {% if post.ticket.description %}
         <p class="mx-auto">{{ post.ticket.description }}</p>
@@ -53,17 +57,18 @@
         </figure>
         {% endif %}
 
-        {% if user.pk != post.user.pk and page_type == 'flux' %}
+        {% if user.pk != post.user.pk and not post.reviews_response and page_type == 'flux' %}
             <footer class="row justify-content-end">
-                <button type="button" class="col-md-3 btn-user" onclick="location.href='{% url 'env:crt-rsp-review' post.pk %}'">Créer une critique</button>
+                <button type="button" class="btn-createResponse col-md-3" onclick="location.href='{% url 'env:crt-rsp-review' post.ticket.pk %}'">Créer une critique</button>
             </footer>
+        {% endif %}
+
         </article>
 
-        {% elif page_type == 'post'%}
-        </article>
+        {% if user.pk == post.user.pk and page_type == 'post'%}
             <footer class="row justify-content-end">
-                <button type="button" class="col-md-3 btn-user me-5" onclick="location.href='{% url 'env:upd-review' post.pk %}'">Modifier</button>
-                <button type="button" class="col-md-3 btn-user" onclick="location.href='{% url 'env:del-review' post.pk %}'">Supprimer</button>
+                <button type="button" class="col-md-3 me-5" onclick="location.href='{% url 'env:upd-review' post.pk %}'">Modifier</button>
+                <button type="button" class="col-md-3" onclick="location.href='{% url 'env:del-review' post.pk %}'">Supprimer</button>
             </footer>
         {% endif %}
 </section>

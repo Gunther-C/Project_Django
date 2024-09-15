@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.views import View
 
-from django.db.models import CharField, Value
+from django.db.models import F, Case, When, Value, CharField, BooleanField
 
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
@@ -47,13 +47,29 @@ class UserFluxView(ListView):
 
     def get_queryset(self):
         user = self.request.user
-        follows = Follow.objects.filter(user=user).values_list('followed_user', flat=True)
+        followed_user = Follow.objects.filter(user=user).values_list('followed_user', flat=True)
 
-        tickets = Ticket.objects.filter(user__in=[user] + list(follows))
+        followed_tickets = Ticket.objects.filter(user__in=list(followed_user))
+        followed_reviews = Review.objects.filter(ticket__in=followed_tickets).exclude(user=F('ticket__user'))
+        ticket_response = Ticket.objects.filter(review__in=followed_reviews)
+
+        tickets = Ticket.objects.filter(user__in=[user] + list(followed_user))
         tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+        tickets = tickets.annotate(reviews_response=Case(
+                When(pk__in=ticket_response.values_list('pk', flat=True), then=Value(True)),
+                default=Value(False),
+                output_field=BooleanField()
+            )
+        )
 
-        reviews = Review.objects.filter(user__in=[user] + list(follows))
+        reviews = Review.objects.filter(user__in=[user] + list(followed_user))
         reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = reviews.annotate(reviews_response=Case(
+                When(ticket__in=list(ticket_response), then=Value(True)),
+                default=Value(False),
+                output_field=BooleanField()
+            )
+        )
 
         return sorted(chain(reviews, tickets), key=lambda flux: flux.time_created, reverse=True)
 
@@ -114,7 +130,9 @@ class TicketCreateView(SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         _title = form.cleaned_data['title']
         _exist = Ticket.objects.filter(user=self.request.user, title=_title).exists()
-        messages.add_message(self.request, messages.WARNING, 'Vous avez déja crée un ticket pour ce titre.')
+        if _exist:
+            messages.add_message(self.request, messages.WARNING,
+                                 'Vous avez déja crée un ticket ayant le mème titre.')
 
         form.instance.user = self.request.user
         return super().form_valid(form)
@@ -161,13 +179,15 @@ class ReviewResponseCreateView(SuccessMessageMixin, CreateView):
     success_message = 'Votre critique est créée.'
 
     def get_context_data(self, **kwargs):
+        kwargs['return_url'] = reverse('env:user-flux')
         kwargs['post'] = get_object_or_404(Ticket, pk=self.kwargs.get('pk'))
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
         ticket = get_object_or_404(Ticket, pk=self.kwargs.get('pk'))
+        review_response = Review.objects.filter(ticket=ticket).exclude(user=F('ticket__user')).exists()
 
-        if Review.objects.filter(ticket=ticket).exists():
+        if review_response:
             messages.add_message(self.request, messages.WARNING, 'Une critique sur ce ticket existe déjà.')
             return self.form_invalid(form)
 
@@ -206,6 +226,7 @@ class ReviewUpdateView(SuccessMessageMixin, UpdateView):
         return get_object_or_404(Review, pk=self.kwargs.get('pk'))
 
     def get_context_data(self, **kwargs):
+        kwargs['return_url'] = reverse('env:user-posts')
         kwargs['post'] = get_object_or_404(Ticket, pk=self.object.ticket.pk)
         return super().get_context_data(**kwargs)
 

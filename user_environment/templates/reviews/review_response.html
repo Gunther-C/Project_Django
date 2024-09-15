@@ -5,11 +5,13 @@
 
 {% block user_env %}
 
-<a class="arrow-begin" href="{% url 'env:user-flux' %}"> < < < </a>
+<a class="arrow-begin" href="{{return_url}}"> < < < </a>
 
 <div class="container text-center my-5">
     <div class="d-flex justify-content-center align-items-start">
         <div class="w-50 mb-5">
+
+            {% include '_alerts.html' %}
 
             <h2 class="my-4">Critique</h2>
 
