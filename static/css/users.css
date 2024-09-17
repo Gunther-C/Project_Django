@@ -1,3 +1,33 @@
+/*___ NOM UTILISATEUR */
+#user-name {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+
+    position: absolute;
+        bottom: -14vh;
+        left: 2vh;
+
+    max-width: 20%;
+    height: 5vh;
+
+    background-color: #ffffff;
+
+    font: normal 1.3em 'charm', helvetica , sans-serif;
+    texy-transform: uppercase;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    border-right: solid 0.06em brown;
+    border-bottom: solid 0.06em brown;
+    border-left: solid 0.06em brown;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+
+    overflow: hidden;
+    z-index: 10;
+}
+
 
 /*___ BOUTON RETOUR (flèche) */
 .arrow-begin{
@@ -7,7 +37,7 @@
 
     position: fixed;
         left: 5%;
-        top: 12%;
+        top: 10%;
 
     padding: 0 1.3em;
     background-color: #ffffff;
@@ -26,6 +56,7 @@
     color: green;
     cursor: pointer;
 }
+
 
 /*___ BALISE FORMULAIRE (modifié: ticket, critique) */
 form > figure {

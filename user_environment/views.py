@@ -1,5 +1,6 @@
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
@@ -17,7 +18,7 @@ from itertools import chain
 
 from authentication.models import User
 from .models import Ticket, Review, Follow
-from .forms import NewTicket, NewReview
+from .forms import NewTicket, NewReview, NewPassword
 
 
 @login_required
@@ -37,6 +38,20 @@ def searching(request):
         return JsonResponse({'status': 'errors'})
 
 
+class UserPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
+    form_class = NewPassword
+    success_url = reverse_lazy('env:user-flux')
+    template_name = 'user_password.html'
+    success_message = "Votre mot de passe est modifié"
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.add_message(self.request, messages.WARNING, f"{error}")
+        form.errors.clear()
+        return super().form_invalid(form)
+
+
 class UserFluxView(ListView):
     template_name = 'user_page.html'
     context_object_name = 'posts'
@@ -47,25 +62,34 @@ class UserFluxView(ListView):
 
     def get_queryset(self):
         user = self.request.user
-        followed_user = Follow.objects.filter(user=user).values_list('followed_user', flat=True)
+        ticket_user = Ticket.objects.filter(user=user)
 
+        """ Abonnés """
+        followed_user = Follow.objects.filter(user=user).values_list('followed_user', flat=True)
         followed_tickets = Ticket.objects.filter(user__in=list(followed_user))
-        followed_reviews = Review.objects.filter(ticket__in=followed_tickets).exclude(user=F('ticket__user'))
-        ticket_response = Ticket.objects.filter(review__in=followed_reviews)
+        followed_reviews = Review.objects.filter(ticket__in=list(followed_tickets)).exclude(user=F('ticket__user'))
+
+        """ non abonnés """
+        untracked_user_review = (Review.objects.filter(ticket__in=list(ticket_user))
+                                 .exclude(user__in=[user] + list(followed_user)))
+        untracked_user = untracked_user_review.values_list('user', flat=True)
+
+        """ Tickets ne pouvant plus recevoir de critique"""
+        ticket_blocked = Ticket.objects.filter(review__in=list(followed_reviews) + list(untracked_user_review))
 
         tickets = Ticket.objects.filter(user__in=[user] + list(followed_user))
         tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
         tickets = tickets.annotate(reviews_response=Case(
-                When(pk__in=ticket_response.values_list('pk', flat=True), then=Value(True)),
+                When(pk__in=ticket_blocked.values_list('pk', flat=True), then=Value(True)),
                 default=Value(False),
                 output_field=BooleanField()
             )
         )
 
-        reviews = Review.objects.filter(user__in=[user] + list(followed_user))
+        reviews = Review.objects.filter(user__in=[user] + list(followed_user) + list(untracked_user))
         reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
         reviews = reviews.annotate(reviews_response=Case(
-                When(ticket__in=list(ticket_response), then=Value(True)),
+                When(ticket__in=list(ticket_blocked), then=Value(True)),
                 default=Value(False),
                 output_field=BooleanField()
             )
@@ -245,7 +269,7 @@ class TicketDeleteView(SuccessMessageMixin, DeleteView):
     success_message = "Votre ticket est supprimé"
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Ticket, pk=self.kwargs['pk'])
+        return get_object_or_404(Ticket, user=self.request.user, pk=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         kwargs['text'] = "Souhaitez-vous supprimer votre ticket :"
@@ -261,7 +285,7 @@ class ReviewDeleteView(SuccessMessageMixin, DeleteView):
     success_message = "Votre critique est supprimée"
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Review, pk=self.kwargs.get('pk'))
+        return get_object_or_404(Review, user=self.request.user, pk=self.kwargs.get('pk'))
 
     def get_context_data(self, **kwargs):
         kwargs['text'] = 'Souhaitez-vous supprimer votre critique :'
@@ -277,7 +301,7 @@ class FollowDeleteView(SuccessMessageMixin, DeleteView):
     success_message = "Votre suivi est supprimé"
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Follow, followed_user_id=self.kwargs['pk'])
+        return get_object_or_404(Follow, user=self.request.user, followed_user_id=self.kwargs['pk'])
 
     def get_context_data(self, **kwargs):
         kwargs['text'] = "Vous désabonner de :"
