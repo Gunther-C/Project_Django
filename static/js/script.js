@@ -1,4 +1,6 @@
 
+const colors_ = Array('#0056ab','#01857a','#02bb46','#04cf32','#05e618');
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -88,9 +90,28 @@ function _btnUserNav() {
     else { $(`#flux`).addClass(`active`) }
 }
 
+function _rating() {
+    $(`.rating`).each( function() {
+        let child = $(this).children();
+        let nbrKeys = Object.keys(colors_).length;
+        let nbr = 0;
+
+        while (nbr < nbrKeys) {
+            if (!$(child[nbr]).hasClass(`bi-star`)) {
+                child[nbr].style.color =  colors_[nbr];
+            }
+            nbr++;
+            if (nbr > 5) break;
+        }
+    })
+}
+
+
 
 (function($) {
 $(document).ready(function() {
+
+    _rating();
 
     _btnUserNav();
 
@@ -126,7 +147,6 @@ $(document).ready(function() {
         let child_last = $(this).next();
 
         if (text.length > 2) {
-
             const Search_result = _searching(text).then((response) => {
                 if (Object.keys(response).length < 1) {
 
@@ -142,12 +162,18 @@ $(document).ready(function() {
 
             }).then((response) => {
                 $.each(response, function(keys, values) {
-                    $('#follow-users-searching').append(`<button type="button" onclick="location.href='/env/create_follow/${keys}/'" class="follow-create btn btn-sm">${values}</button>`);
+                    if (keys == 'followed') {
+                        $('#follow-users-searching').append(`<button type="button" class="follow-create btn btn-sm">${values} (abonné)</button>`);
+                    }
+                    else {
+                        $('#follow-users-searching').append(`<button type="button" onclick="location.href='/env/create_follow/${keys}/'" class="follow-create btn btn-sm">${values}</button>`);
+                    }
                 })
 
             }).catch((error) => console.warn(error))
         }
     })
+
 })
 })(jQuery);
 

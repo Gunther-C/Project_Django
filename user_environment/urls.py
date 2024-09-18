@@ -4,7 +4,7 @@ from .views import UserFluxView, UserPostView, UserFollowView
 from .views import TicketCreateView, ReviewCreateView, FollowCreateView, ReviewResponseCreateView
 from .views import TicketUpdateView, ReviewUpdateView
 from .views import TicketDeleteView, ReviewDeleteView, FollowDeleteView
-from .views import searching, UserPasswordChangeView
+from .views import searching
 
 urlpatterns = [
     path('user_flux/', UserFluxView.as_view(), name='user-flux'),
@@ -20,5 +20,4 @@ urlpatterns = [
     path('delete_review/<int:pk>/', ReviewDeleteView.as_view(), name='del-review'),
     path('delete_follow/<int:pk>/', FollowDeleteView.as_view(), name='del-follow'),
     path('searching/', searching, name='search'),
-    path('password_change/', UserPasswordChangeView.as_view(), name='cust-password')
 ]

@@ -1,7 +1,7 @@
 # from django.core.exceptions import ValidationError
 from django.forms.utils import ErrorList
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm
+
 from .models import Ticket, Review
 
 
@@ -34,29 +34,3 @@ class NewReview(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['title_review', 'rating', 'details']
-
-
-class NewPassword(PasswordChangeForm):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['old_password'].widget.attrs.update({'class': 'form-control form-control-sm'})
-        self.fields['new_password1'].widget.attrs.update({'class': 'form-control form-control-sm'})
-        self.fields['new_password2'].widget.attrs.update({'class': 'form-control form-control-sm'})
-
-        """self.fields['new_password1'].help_text = None
-        self.fields['new_password2'].help_text = None"""
-
-    def add_error_to_all(self, message):
-        errors = self._errors.setdefault(forms.forms.NON_FIELD_ERRORS, ErrorList())
-        errors.append(message)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("new_password1")
-        password2 = cleaned_data.get("new_password2")
-
-        if len(password1) < 8:
-            self.add_error_to_all("Le mot de passe doit comporter minimum huit caractères.")
-
-        if password1 and password2 and password1 != password2:
-            self.add_error_to_all("Les mots de passe ne correspondent pas.")

@@ -18,38 +18,31 @@ from itertools import chain
 
 from authentication.models import User
 from .models import Ticket, Review, Follow
-from .forms import NewTicket, NewReview, NewPassword
+from .forms import NewTicket, NewReview
 
 
 @login_required
 def searching(request):
+    user = request.user
+
     if request.method == 'POST':
         users_searching = request.POST.get('user-searching')
 
         if users_searching:
             response = {}
-            users_result = User.objects.filter(username__icontains=users_searching)
+            users_result = User.objects.filter(username__icontains=users_searching).exclude(pk=user.pk)
 
-            for user in users_result:
-                response[user.id] = user.username
+            for _user in users_result:
+
+                if Follow.objects.filter(user=user, followed_user=_user):
+                    response['followed'] = _user.username
+                else:
+                    response[_user.id] = _user.username
 
             return JsonResponse(response)
 
         return JsonResponse({'status': 'errors'})
 
-
-class UserPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
-    form_class = NewPassword
-    success_url = reverse_lazy('env:user-flux')
-    template_name = 'user_password.html'
-    success_message = "Votre mot de passe est modifié"
-
-    def form_invalid(self, form):
-        for field, errors in form.errors.items():
-            for error in errors:
-                messages.add_message(self.request, messages.WARNING, f"{error}")
-        form.errors.clear()
-        return super().form_invalid(form)
 
 
 class UserFluxView(ListView):

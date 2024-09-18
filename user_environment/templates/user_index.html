@@ -5,7 +5,7 @@
 <nav id="nav-user" class="navbar navbar-expand-lg fixed-top bg-light px-3">
 
     {% if request.user.is_authenticated %}
-    <button type="button" id="user-name" class="ms-3 px-5" onclick="location.href='{% url 'env:cust-password' %}'">
+    <button type="button" id="user-name" class="ms-3 px-5" onclick="location.href='{% url 'auth:chg-email' %}'">
        <strong>{{ request.user.username }}</strong>, bonjour !
     </button>
     {% endif %}

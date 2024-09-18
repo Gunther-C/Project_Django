@@ -21,7 +21,7 @@
 
         <h5 class="text-capitalize my-3">{{ post.title_review }}</h5>
 
-        <div class="d-inline-flex">
+        <div class="rating d-inline-flex">
         {% for i in 5|range_filter %}
 
             {% if i < post.rating %}

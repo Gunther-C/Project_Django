@@ -1,8 +1,14 @@
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 
-from .forms import Registration, Connection
+from django.views.generic.edit import FormView
+
+from .forms import Registration, Connection, NewPassword, NewEmail
 
 
 def registration(request):
@@ -55,3 +61,42 @@ def connection(request):
     messages.add_message(request, messages.WARNING, text_message)
 
     return render(request, 'login.html', {'form': form})
+
+
+class UserPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
+    form_class = NewPassword
+    template_name = 'change_password.html'
+    success_url = reverse_lazy('auth:login')
+    success_message = "Votre mot de passe est modifié"
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.add_message(self.request, messages.WARNING, f"{error}")
+        form.errors.clear()
+        return super().form_invalid(form)
+
+
+class UserEmailChangeView(SuccessMessageMixin, LoginRequiredMixin, FormView):
+    form_class = NewEmail
+    template_name = 'change_mail.html'
+    success_url = reverse_lazy('auth:login')
+    success_message = "Votre adresse e-mail est modifiée"
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        new_email = form.cleaned_data.get('new_mail1')
+        self.request.user.email = new_email
+        self.request.user.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        for field, errors in form.errors.items():
+            for error in errors:
+                messages.add_message(self.request, messages.WARNING, f"{error}")
+        form.errors.clear()
+        return super().form_invalid(form)
