@@ -16,19 +16,42 @@
 {% endblock %}
 
 {% block content %}
-<div class="container text-center">
-    <div class="d-flex justify-content-center align-items-start">
-        <div class="w-50">
-            <h2 class="my-4">Inscription</h2>
-            <form action="" method="post" id="form-registration"  class="mx-auto">
+<main class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-center align-items-start w-100 mb-5">
+        <div class="w-75 mt-5 pt-3 px-5">
+            <h2 class="text-center my-4">Inscription</h2>
+
+            <form method="post" id="form-registration"  class="text-start mx-auto">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <p class="p-submit">
+                {{ form.non_field_errors }}
+
+                <p class="w-50 mb-2 mx-auto">
+                    <label for="{{ form.username.id_for_label }}" class="register-username-infos form-label">{{ form.username.label }} :</label>
+                    {{ form.username }}
+                </p>
+
+                <p class="w-50 mb-5 mx-auto">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }} :</label>
+                    {{ form.email }}
+                </p>
+
+                 <p class="w-50 mb-2 mx-auto">
+                    <label for="{{ form.password1.id_for_label }}" class="register-password-infos form-label">{{ form.password1.label }} :</label>
+                    {{ form.password1 }}
+                </p>
+
+                 <p class="w-50 mb-4 mx-auto">
+                    <label for="{{ form.password2.id_for_label }}" class="form-label">{{ form.password2.label }} :</label>
+                    {{ form.password2 }}
+                </p>
+
+                <p class="p-submit w-50 mb-4 mx-auto">
                     <input type="submit" value="Valider">
                 </p>
             </form>
+
             {% include '_alerts.html' %}
         </div>
     </div>
-</div>
+</main>
 {% endblock %}

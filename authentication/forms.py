@@ -1,45 +1,22 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.forms.utils import ErrorList
 from .models import User
 
 
-class Registration(forms.ModelForm):
+class Registration(UserCreationForm):
 
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control form-control-sm', 'placeholder': 'Votre nom d\'utilisateur'}),
-        label='', help_text=''
-    )
-
-    email = forms.CharField(widget=forms.EmailInput(
-        attrs={'class': 'form-control form-control-sm', 'placeholder': 'Votre E-mail'}), label='')
-
-    password1 = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'form-control form-control-sm', 'placeholder': 'Votre Mot de passe'}), label='')
-
-    password2 = forms.CharField(widget=forms.PasswordInput(
-        attrs={'class': 'form-control form-control-sm', 'placeholder': 'Confirmez Votre mot de passe'}), label='')
+    email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control form-control-sm'}))
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ('username', 'email', 'password1', 'password2')
 
-    def add_error_to_all(self, message):
-        errors = self._errors.setdefault(forms.forms.NON_FIELD_ERRORS, ErrorList())
-        errors.append(message)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
-
-        if len(password1) < 8:
-            self.add_error_to_all("Le mot de passe doit comporter minimum huit caractères.")
-
-        if password1 and password2 and password1 != password2:
-            self.add_error_to_all("Les mots de passe ne correspondent pas.")
-
-        # return cleaned_data
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control form-control-sm'})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control form-control-sm'})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control form-control-sm'})
 
 
 class Connection(forms.Form):
@@ -62,24 +39,6 @@ class NewPassword(PasswordChangeForm):
         self.fields['old_password'].widget.attrs.update({'class': 'form-control form-control-sm'})
         self.fields['new_password1'].widget.attrs.update({'class': 'form-control form-control-sm'})
         self.fields['new_password2'].widget.attrs.update({'class': 'form-control form-control-sm'})
-
-        """self.fields['new_password1'].help_text = None
-        self.fields['new_password2'].help_text = None"""
-
-    def add_error_to_all(self, message):
-        errors = self._errors.setdefault(forms.forms.NON_FIELD_ERRORS, ErrorList())
-        errors.append(message)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("new_password1")
-        password2 = cleaned_data.get("new_password2")
-
-        if len(password1) < 8:
-            self.add_error_to_all("Le mot de passe doit comporter minimum huit caractères.")
-
-        if password1 and password2 and password1 != password2:
-            self.add_error_to_all("Les mots de passe ne correspondent pas.")
 
 
 class NewEmail(forms.Form):

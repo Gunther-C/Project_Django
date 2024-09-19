@@ -2,7 +2,6 @@ from django.urls import path
 from .views import registration, connection
 from .views import UserPasswordChangeView, UserEmailChangeView
 
-# app_name = 'auth'
 
 urlpatterns = [
     path('', connection, name='login'),

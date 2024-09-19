@@ -1,31 +1,51 @@
 /*___ NOM UTILISATEUR */
-#user-name {
+#user-parameter {
     display: flex;
+        flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
 
-    position: absolute;
-        bottom: -14vh;
-        left: 2vh;
+    position: fixed;
+        top: 20vh;
+        left: 2vw;
 
     max-width: 20%;
     height: 5vh;
 
     background-color: #ffffff;
-
-    font: normal 1.3em 'charm', helvetica , sans-serif;
-    texy-transform: uppercase;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
     border-right: solid 0.06em brown;
     border-bottom: solid 0.06em brown;
     border-left: solid 0.06em brown;
     border-bottom-right-radius: 10px;
     box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+    font-family:  'charm', helvetica , sans-serif;
 
-    overflow: hidden;
     z-index: 10;
+}
+
+#user-parameter > span {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#content-parameter {
+    display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+
+    position: fixed;
+        top: 27vh;
+        left: 5vw;
+
+    height: 14vh;
 }
 
 
@@ -237,5 +257,4 @@ article > footer {
 }
 .follow-create:hover {
     background-color: rgba(236, 244, 253, 0.5);
-
 }

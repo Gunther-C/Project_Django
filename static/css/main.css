@@ -96,6 +96,17 @@ hr.hr-60{ width: 60%; margin: 0;}
 
 
 /*___ FORMULAIRE : Connexion, inscription */
+.register-username-infos, .register-password-infos {
+    pointer-events: none;
+
+}
+.register-username-infos::after, .register-password-infos::after {
+    font-family: 'bootstrap-icons';
+    content: '\F4BE';
+    margin-left: 1.4em;
+    pointer-events: auto;
+}
+
 #form-login, #form-registration {
     display: flex;
         flex-flow: column nowrap;

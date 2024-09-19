@@ -24,9 +24,10 @@ def registration(request):
             error_messages = '\n'
             for field, errors in form.errors.items():
                 for error in errors:
-                    error_messages += f"{error} \n"
+                    messages.add_message(self.request, messages.WARNING, f"{error}")
+                    # error_messages += f"{error} \n"
             form.errors.clear()
-            messages.add_message(request, messages.WARNING, error_messages)
+            # messages.add_message(request, messages.WARNING, error_messages)
 
     else:
         form = Registration()

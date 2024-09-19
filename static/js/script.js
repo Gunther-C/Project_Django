@@ -119,7 +119,6 @@ $(document).ready(function() {
 
     $(`body`).on(`click`, function() {
         if ($(`#follow-users-searching`).is(`:visible`)) $(`#follow-users-searching`).detach();
-
     })
 
     $(document).on('mousedown','button, input[type="submit"], .arrow-begin', function() {
@@ -173,6 +172,77 @@ $(document).ready(function() {
             }).catch((error) => console.warn(error))
         }
     })
+
+    $(`#user-parameter`).on(`click`, function () {
+
+        if (!$(`#content-parameter`).is(`:visible`)) {
+            $(`body`).append(`
+            <div id="content-parameter">
+                <button type="button" onclick="location.href='/password_change/'" class="btn btn-sm">Modifiez votre password</button>
+                <button type="button" onclick="location.href='/email_change/'" class="btn btn-sm">Modifiez votre e-mail</button>
+            </div>
+            `);
+            $(this).find(`.parameter-stat`).text(`Fermer`);
+        }
+        else {
+            $(`#content-parameter`).detach();
+            $(this).find(`.parameter-stat`).text(`Ouvrir`);
+        }
+    })
+
+    $(`#user-parameter`).hover(
+
+        function () {
+            let text = `Ouvrir`;
+            if ($(`#content-parameter`).is(`:visible`)) text = `Fermer`;
+
+            $(this).find(`.user-name`).hide();
+            $(this).append(`<span class="parameter-name"><i class="bi bi-gear pe-2"></i> <span class="parameter-stat">${text}</span></span>`)
+
+        },
+        function () {
+            $(this).find(`.parameter-name`).detach()
+            $(this).find(`.user-name`).show();
+        }
+    )
+
+
+    $(`.register-username-infos`).hover(
+
+        function () {
+            let parent = $(this).parent();
+            if ($(`.register-help`).is(`:visible`)) $(`.register-help`).detach();
+
+            parent.after(`<div class="register-help alert alert-primary d-flex align-items-center justify-content-center w-75 mx-auto mb-5 py-1" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 text-primary"></i>
+                    <ul>
+                        <li>Requis. Votre nom utilisateur doit être unique et contenir moins de 50 caractères,</li>
+                        <li>Uniquement des lettres, nombres ou « @ », « . », « + », « - » et « _ »...</li>
+                    </ul>
+                </div>`)
+        },
+        function () { $(`.register-help`).detach() }
+    )
+
+    $(`.register-password-infos`).hover(
+
+        function () {
+            let parent = $(this).parent();
+            if ($(`.register-help`).is(`:visible`)) $(`.register-help`).detach();
+
+            parent.after(`<div class="register-help alert alert-primary d-flex align-items-center justify-content-center w-75 mx-auto mb-5 py-1" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 text-primary"></i>
+                    <ul>
+                        <li>Votre ancien mot de passe est incorrect. Veuillez réessayer.</li>
+                        <li>Votre mot de passe ne peut pas trop ressembler à vos autres informations personnelles.</li>
+                        <li>Votre mot de passe doit contenir au minimum 8 caractères.</li>
+                        <li>Votre mot de passe ne peut pas être un mot de passe couramment utilisé.</li>
+                        <li>Votre mot de passe ne peut pas être entièrement numérique.</li>
+                    </ul>
+                </div>`)
+        },
+        function () { $(`.register-help`).detach() }
+    )
 
 })
 })(jQuery);
