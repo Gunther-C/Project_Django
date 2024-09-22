@@ -9,11 +9,11 @@
             <div id="content-btn-nav-user" data-type="{{page_type}}">
                 <button type="button" id="flux" class="btn-nav-user btn btn-sm btn-outline-success" onclick="location.href='{% url 'env:user-flux' %}'">Flux</button>
                 <button type="button" id="post" class="btn-nav-user btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'env:user-posts' %}'">Posts</button>
-                <button type="button" id="follow" class="btn-nav-user btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'env:user-follows' %}'">Abonnement</button>
+                <button type="button" id="follow" class="btn-nav-user btn btn-sm btn-outline-secondary" onclick="location.href='{% url 'env:user-follows' %}'">Follows</button>
             </div>
         </div>
         <div>
-            <ul class="navbar-nav mb-2 mb-lg-0 pe-5">
+            <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item d-flex align-items-center me-5">
                     <button type="button" class="btn-project" onclick="location.href='{% url 'auth:login' %}'">Déconnexion</button>
                 </li>
@@ -26,13 +26,13 @@
 
 {% block content %}
 {% if request.user.is_authenticated %}
-<button type="button" id="user-parameter" class="ms-3 px-5">
+<button type="button" id="user-parameter">
    <span class="user-name"><strong>{{ request.user.username }}</strong>, bonjour !</span>
 </button>
 {% endif %}
 
 <main class="container-fluid">
-    <div class="d-flex flex-wrap justify-content-center align-items-start w-100">
+    <div id="user-index" class="d-flex flex-wrap justify-content-center align-items-start w-100">
         {% block user_env %}{% endblock %}
     </div>
 </main>

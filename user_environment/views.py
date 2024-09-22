@@ -35,14 +35,13 @@ def searching(request):
             for _user in users_result:
 
                 if Follow.objects.filter(user=user, followed_user=_user):
-                    response['followed'] = _user.username
+                    response[_user.id] = f"???-{_user.username}"
                 else:
                     response[_user.id] = _user.username
 
             return JsonResponse(response)
 
         return JsonResponse({'status': 'errors'})
-
 
 
 class UserFluxView(ListView):
@@ -63,8 +62,8 @@ class UserFluxView(ListView):
         followed_reviews = Review.objects.filter(ticket__in=list(followed_tickets)).exclude(user=F('ticket__user'))
 
         """ non abonnés """
-        untracked_user_review = (Review.objects.filter(ticket__in=list(ticket_user))
-                                 .exclude(user__in=[user] + list(followed_user)))
+        untracked_user_review = Review.objects.filter(ticket__in=list(ticket_user))
+        untracked_user_review = untracked_user_review.exclude(user__in=[user] + list(followed_user))
         untracked_user = untracked_user_review.values_list('user', flat=True)
 
         """ Tickets ne pouvant plus recevoir de critique"""

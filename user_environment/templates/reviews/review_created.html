@@ -14,8 +14,12 @@
                 {% csrf_token %}
                 {{ form.non_field_errors }}
 
+                <h5>Ticket :</h5>
                 {{ form_ticket.as_p }}
 
+                <hr class="hr-60 my-5 mx-auto">
+
+                <h5>Votre avis :</h5>
                 <div class="mb-4">
                     <label for="{{ form.title_review.id_for_label }}" class="form-label">{{ form.title_review.label }} :</label>
                     {{ form.title_review }}

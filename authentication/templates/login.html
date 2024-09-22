@@ -17,11 +17,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="container text-center py-4">
-    <div class="row justify-content-center">
-        <aside id="asd-index" class="col-md-5">
-            <h2>Connectez-vous</h2>
-            <form action="" method="post" id="form-login" class="mx-auto">
+<main class="container-fluid">
+    <div id="start-page" class="py-4">
+        <aside>
+            <h2 class="my-4">Connectez-vous</h2>
+            <form id="authenticate-form" method="post" class="mx-auto">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <p class="p-submit">
@@ -39,7 +39,7 @@
             {% endif %}
 
         </aside>
-        <section id="sect-index" class="col-md-7 d-flex justify-content-center align-items-end">
+        <section>
             <figure class="me-5 pb-5">
                 <img src="{% static 'img/books.png' %}" class="img-fluid" alt="Image d'un livre'">
             </figure>
@@ -51,5 +51,5 @@
             </figure>
         </section>
     </div>
-</div>
+</main>
 {% endblock %}

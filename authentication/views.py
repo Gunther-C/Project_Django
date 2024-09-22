@@ -21,13 +21,10 @@ def registration(request):
             return redirect('/')
 
         else:
-            error_messages = '\n'
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.add_message(self.request, messages.WARNING, f"{error}")
-                    # error_messages += f"{error} \n"
             form.errors.clear()
-            # messages.add_message(request, messages.WARNING, error_messages)
 
     else:
         form = Registration()

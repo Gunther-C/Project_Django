@@ -1,5 +1,5 @@
 
-const colors_ = Array('#0056ab','#01857a','#02bb46','#04cf32','#05e618');
+const Colors_ = Array('#0056ab','#01857a','#02bb46','#04cf32','#05e618');
 
 function getCookie(name) {
     let cookieValue = null;
@@ -93,12 +93,12 @@ function _btnUserNav() {
 function _rating() {
     $(`.rating`).each( function() {
         let child = $(this).children();
-        let nbrKeys = Object.keys(colors_).length;
+        let nbrKeys = Object.keys(Colors_).length;
         let nbr = 0;
 
         while (nbr < nbrKeys) {
             if (!$(child[nbr]).hasClass(`bi-star`)) {
-                child[nbr].style.color =  colors_[nbr];
+                child[nbr].style.color =  Colors_[nbr];
             }
             nbr++;
             if (nbr > 5) break;
@@ -118,8 +118,10 @@ $(document).ready(function() {
     _alertAlert();
 
     $(`body`).on(`click`, function() {
+
         if ($(`#follow-users-searching`).is(`:visible`)) $(`#follow-users-searching`).detach();
     })
+
 
     $(document).on('mousedown','button, input[type="submit"], .arrow-begin', function() {
         $(this).css({'transform': 'scale(0.95)', 'box-shadow': 'inset 2px 4px 8px rgba(170, 170, 170, 0.4)'})
@@ -137,6 +139,7 @@ $(document).ready(function() {
         }
     })
 
+
     $(document).on(`keyup past cut click`, `#user-searching`, function(e) {
 
         if ($(`#follow-users-searching`).is(`:visible`)) $(`#follow-users-searching`).detach();
@@ -146,12 +149,17 @@ $(document).ready(function() {
         let child_last = $(this).next();
 
         if (text.length > 2) {
-            const Search_result = _searching(text).then((response) => {
+
+            const Search_ = _searching(text).then((response) => {
+
                 if (Object.keys(response).length < 1) {
 
-                    $(`#follow_searching`).append(`<div id="empty_search" class="alert alert-warning d-flex align-items-center justify-content-center w-75 mx-auto
-                    mt-4 px-3 py-1" role="alert"><i class="bi bi-exclamation-triangle-fill flex-shrink-0
-                    me-2 text-warning"></i><div>Pas d'utilisateur à ce nom</div></div>`);
+                    $(`#follow_searching`).append(`
+                        <div id="empty_search" class="alert alert-warning d-flex align-items-center justify-content-center w-75 mx-auto mt-4 px-3 py-1" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 text-warning"></i>
+                        <div>Aucun utilisateur à ce nom</div>
+                        </div>
+                    `);
                     _alertAlert();
                 }
                 else {
@@ -160,18 +168,23 @@ $(document).ready(function() {
                 }
 
             }).then((response) => {
+
                 $.each(response, function(keys, values) {
-                    if (keys == 'followed') {
+
+                    if (values.includes(`???`)) {
+                        values = values.substring(values.lastIndexOf('-')+1);
                         $('#follow-users-searching').append(`<button type="button" class="follow-create btn btn-sm">${values} (abonné)</button>`);
                     }
                     else {
-                        $('#follow-users-searching').append(`<button type="button" onclick="location.href='/env/create_follow/${keys}/'" class="follow-create btn btn-sm">${values}</button>`);
+                        $('#follow-users-searching').prepend(`<button type="button" onclick="location.href='/env/create_follow/${keys}/'" class="follow-create btn btn-sm">${values}</button>`);
                     }
+
                 })
 
             }).catch((error) => console.warn(error))
         }
     })
+
 
     $(`#user-parameter`).on(`click`, function () {
 
@@ -243,6 +256,44 @@ $(document).ready(function() {
         },
         function () { $(`.register-help`).detach() }
     )
+
+
+    $('#id_image').change(function(e){
+
+        if ($(`#figure_clone`).is(`:visible`)) $(`#figure_clone`).detach();
+
+        let input = $(this);
+        let filePath = $(this).val();
+
+        if(filePath.length > 4 ) {
+
+            let countFiles = input[0].files.length;
+            let figure = `<figure id="figure_clone"><img src="" id="img_clone" class="img-fluid img-thumbnail" alt="Photo du ticket"></figure>`;
+
+            const image_ = new Promise((resolve, reject) => {
+
+                if(typeof (FileReader) === undefined) {
+                    reject(new Error(`Erreur de chargement`));
+                }
+                else {
+                    resolve($(`#user-index`).append(figure));
+                }
+
+            }).then(() => {
+
+                 for(let i = 0; i < countFiles; i++){
+
+                    let newFile = new FileReader();
+
+                    newFile.onload = function(e){
+                        $(`#img_clone`).attr(`src`,e.target.result);
+                    }
+                    newFile.readAsDataURL(input[0].files[i]);
+                }
+
+            }).catch((error) => console.warn(error))
+        }
+    })
 
 })
 })(jQuery);

@@ -1,53 +1,3 @@
-/*___ NOM UTILISATEUR */
-#user-parameter {
-    display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
-
-    position: fixed;
-        top: 20vh;
-        left: 2vw;
-
-    max-width: 20%;
-    height: 5vh;
-
-    background-color: #ffffff;
-    border-right: solid 0.06em brown;
-    border-bottom: solid 0.06em brown;
-    border-left: solid 0.06em brown;
-    border-bottom-right-radius: 10px;
-    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
-    font-family:  'charm', helvetica , sans-serif;
-
-    z-index: 10;
-}
-
-#user-parameter > span {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-
-    text-transform: uppercase;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-#content-parameter {
-    display: flex;
-        flex-flow: column wrap;
-        align-items: flex-start;
-        justify-content: space-around;
-
-    position: fixed;
-        top: 27vh;
-        left: 5vw;
-
-    height: 14vh;
-}
-
 
 /*___ BOUTON RETOUR (flèche) */
 .arrow-begin{
@@ -78,21 +28,97 @@
 }
 
 
-/*___ BALISE FORMULAIRE (modifié: ticket, critique) */
-form > figure {
+
+/*___ SECTION CHEMIN DES VUES (ticket, critique */
+#user-index > section {
+    display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: flex-start;
+}
+
+#user-index > #figure_clone {
     display: flex;
         justify-content: center;
         align-items: center;
-    width: 40%;
-    margin-left: 1vh;
+
+    position: fixed;
+        top: 20vh;
+        right: 2vw;
+    width: 20%;
+    height: 30vh;
 }
-form > figure img {
+
+#user-index > #figure_clone > img {
     max-width: 100%;
     max-height: 100%;
 }
 
 
-/*___ SECTION CHEMIN DES VUES (ticket, critique */
+/*___ navBar principale utilisateur */
+.btn-nav-user { width: 8vw;}
+
+/*___ paramètres utilisateur */
+#user-parameter {
+    display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+    position: fixed;
+        top: 20vh;
+        left: 2vw;
+
+    max-width: 20%;
+    min-width: 12%;
+    height: 5vh;
+
+    padding-left: 2em;
+    padding-right: 2em;
+
+    background-color: #ffffff;
+    border-right: solid 0.06em brown;
+    border-bottom: solid 0.06em brown;
+    border-left: solid 0.06em brown;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+    font-family:  'charm', helvetica , sans-serif;
+
+    z-index: 10;
+}
+#user-parameter > span {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#content-parameter {
+    display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+
+    position: fixed;
+        top: 27vh;
+        left: 5vw;
+
+    height: 14vh;
+}
+#content-parameter > button {
+    background-color: #ffffff;
+    border: solid 0.06em brown;
+    border-bottom-right-radius: 10px;
+    box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
+}
+
+
+/*___ vues (flux, posts) */
 #sect-viewScroll {
     width: 60%;
     padding: 2% 5%;
@@ -111,13 +137,11 @@ form > figure img {
     padding-left: 0.5em;
     padding-right: 0.5em;
 }
-
 #nav-create > div {
     height: 100%;
     padding-bottom: 4vh;
     background-color: rgba(245, 203, 142, 0.5);
 }
-
 .hidden-div {
     width: 60%;
     height: 14vh;
@@ -150,12 +174,10 @@ article > header {
     width: 100%;
     margin-bottom: 2%;
 }
-
 article > h5 {
     margin: 2vh 0;
 
 }
-
 article > p {
     width: 98%;
     max-height: 18vh;
@@ -207,7 +229,6 @@ article > footer {
     width: 100%;
     margin-bottom: 2%;
 }
-
 .sect-viewReview > header > p {
     width: 98%;
     max-height: 18vh;
@@ -225,7 +246,18 @@ article > footer {
 }
 
 
-/* //___ RECHERCHE D'UN UTILISATEUR */
+
+/* //___ ABONNÉES */
+
+/*___ vues (follows) */
+#sect-viewScrollFollow {
+    width: 50%;
+    margin-bottom: 5%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+/*___ recherche */
 #follow-users-searching {
     width: 98%;
     max-height: 18vh;
@@ -237,7 +269,6 @@ article > footer {
     overflow: hidden;
     overflow-y: auto;
 }
-
 .follow-create{
     justify-content: flex-start;
 
@@ -257,4 +288,5 @@ article > footer {
 }
 .follow-create:hover {
     background-color: rgba(236, 244, 253, 0.5);
+
 }

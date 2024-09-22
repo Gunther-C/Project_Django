@@ -5,7 +5,7 @@
 
 {% block user_env %}
 
-<section class="column align-items-center flex-wrap w-50 mb-5 py-5">
+<section id="sect-viewScrollFollow"  class="sect-responsive">
 
     {% include '_alerts.html' %}
 
@@ -21,7 +21,7 @@
     </div>
 
     {% if following %}
-    <div class="table-responsive-sm">
+    <div class="table-responsive-sm w-100">
         <table class="table table-hover table-bordered border-white">
             <thead>
             <tr>
@@ -43,7 +43,7 @@
     {% endif %}
 
     {% if followed %}
-    <div class="table-responsive-sm">
+    <div class="table-responsive-sm w-100">
         <table class="table table-hover table-bordered border-white" style="margin-top: 15vh;">
             <thead>
                 <tr>

@@ -13,15 +13,15 @@
                 {% csrf_token %}
                 {{ form.non_field_errors }}
 
-                <p>
+                <div class="mb-4">
                     <label for="{{ form.title.id_for_label }}" class="form-label">{{ form.title.label }} :</label>
                     {{ form.title }}
-                </p>
+                </div>
 
-                <p>
+                <div class="mb-4">
                     <label for="{{ form.description.id_for_label }}" class="form-label">{{ form.description.label }} :</label>
                     {{ form.description }}
-                </p>
+               </div>
 
                 {% if form.image.initial %}
                 <figure>
@@ -29,14 +29,14 @@
                 </figure>
                 {% endif %}
 
-                <p>
+                <div class="mb-5">
                     <label for="{{ form.image.id_for_label }}" class="form-label">{{ form.image.label }} :</label>
                     {{ form.image }}
-                </p>
+                </div>
 
-                <p class="p-submit">
+                <div class="p-submit">
                     <input type="submit" value="Valider">
-                </p>
+                </div>
             </form>
         </div>
     </div>

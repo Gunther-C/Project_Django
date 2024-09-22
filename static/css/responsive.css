@@ -1,0 +1,34 @@
+
+@media screen and (max-width:768px) {
+
+    h3 { font-size: 1.8em; }
+    button, input[type="submit"] { white-space: unset; }
+
+    #start-page > aside { flex: 0 0 50%; }
+    #start-page > aside > form > .p-submit { margin-bottom: 0.2em; }
+
+    #register-page > form { width: 80%;}
+    #register-page > form > p { width: 70%; }
+
+    /*___ CONNECTED */
+    .btn-user { width: 25vw;}
+
+    #sect-viewScroll, #sect-viewScrollFollow, #nav-create, .hidden-div { width: 90%; }
+
+    #user-parameter {
+        top: 17vh;
+        left: 1vw;
+
+        min-width: 18%;
+        height: 4vh;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        font-size: 0.9em;
+    }
+    #content-parameter {
+        position: fixed;
+            top: 22vh;
+            left: 1vw;
+    }
+}
+
