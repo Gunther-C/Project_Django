@@ -29,12 +29,12 @@
     </figure>
     {% endif %}
 
-    <footer class="row justify-content-end">
+    <footer>
     {% if user.pk != post.user.pk and not post.reviews_response and page_type == 'flux' %}
-        <button type="button" class="btn-createResponse col-md-3" onclick="location.href='{% url 'env:crt-rsp-review' post.pk %}'">Créer une critique</button>
+        <button type="button" class="btn-createResponse" onclick="location.href='{% url 'env:crt-rsp-review' post.pk %}'">Créer une critique</button>
     {% elif page_type == 'post'%}
-        <button type="button" class="col-md-3 me-5" onclick="location.href='{% url 'env:upd-ticket' post.pk %}'">Modifier</button>
-        <button type="button" class="col-md-3" onclick="location.href='{% url 'env:del-ticket' post.pk %}'">Supprimer</button>
+        <button type="button" class="me-5" onclick="location.href='{% url 'env:upd-ticket' post.pk %}'">Modifier</button>
+        <button type="button" onclick="location.href='{% url 'env:del-ticket' post.pk %}'">Supprimer</button>
     {% endif %}
     </footer>
 </article>

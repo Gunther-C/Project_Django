@@ -3,7 +3,7 @@
 
 <section class="sect-viewReview">
     <header>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="sect-viewReview-first">
             <div>
                 <span>
                     {% if user.pk != post.user.pk %}
@@ -58,17 +58,17 @@
         {% endif %}
 
         {% if user.pk != post.user.pk and not post.reviews_response and page_type == 'flux' %}
-            <footer class="row justify-content-end">
-                <button type="button" class="btn-createResponse col-md-3" onclick="location.href='{% url 'env:crt-rsp-review' post.ticket.pk %}'">Créer une critique</button>
+            <footer>
+                <button type="button" class="btn-createResponse" onclick="location.href='{% url 'env:crt-rsp-review' post.ticket.pk %}'">Créer une critique</button>
             </footer>
         {% endif %}
 
         </article>
 
         {% if user.pk == post.user.pk and page_type == 'post'%}
-            <footer class="row justify-content-end">
-                <button type="button" class="col-md-3 me-5" onclick="location.href='{% url 'env:upd-review' post.pk %}'">Modifier</button>
-                <button type="button" class="col-md-3" onclick="location.href='{% url 'env:del-review' post.pk %}'">Supprimer</button>
+            <footer>
+                <button type="button" class="me-5" onclick="location.href='{% url 'env:upd-review' post.pk %}'">Modifier</button>
+                <button type="button" onclick="location.href='{% url 'env:del-review' post.pk %}'">Supprimer</button>
             </footer>
         {% endif %}
 </section>

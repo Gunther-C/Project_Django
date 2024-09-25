@@ -191,8 +191,8 @@ $(document).ready(function() {
         if (!$(`#content-parameter`).is(`:visible`)) {
             $(`body`).append(`
             <div id="content-parameter">
-                <button type="button" onclick="location.href='/password_change/'" class="btn btn-sm">Modifiez votre password</button>
-                <button type="button" onclick="location.href='/email_change/'" class="btn btn-sm">Modifiez votre e-mail</button>
+                <button type="button" onclick="location.href='/password_change/'" class="btn btn-sm">Modifiez &nbsp; <strong>Password</strong></button>
+                <button type="button" onclick="location.href='/email_change/'" class="btn btn-sm">Modifiez &nbsp; <strong>E-mail</strong></button>
             </div>
             `);
             $(this).find(`.parameter-stat`).text(`Fermer`);
@@ -210,7 +210,7 @@ $(document).ready(function() {
             if ($(`#content-parameter`).is(`:visible`)) text = `Fermer`;
 
             $(this).find(`.user-name`).hide();
-            $(this).append(`<span class="parameter-name"><i class="bi bi-gear pe-2"></i> <span class="parameter-stat">${text}</span></span>`)
+            $(this).append(`<span class="parameter-name"><i class="bi bi-gear pe-2"></i> ${text}</span>`)
 
         },
         function () {

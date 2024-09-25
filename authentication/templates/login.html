@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block nav_bar %}
-<nav class="navbar navbar-expand-lg bg-light px-3 py-3">
+<nav class="navbar navbar-expand-lg bg-light py-3">
     <div class="container-fluid">
         <h1>Le monde de la critique</h1>
         <div>
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 pe-5">
-                <li class="nav-item d-flex align-items-center me-5">
-                    <button type="button" class="btn-project" onclick="location.href='{% url 'auth:registration' %}'">Inscription</button>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li id="li-nav-btnChoice" class="nav-item d-flex align-items-center">
+                    <button type="button" class="btn-project btn btn-sm" onclick="location.href='{% url 'auth:registration' %}'">Inscription</button>
                 </li>
             </ul>
         </div>

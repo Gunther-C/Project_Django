@@ -1,34 +1,200 @@
 
-@media screen and (max-width:768px) {
+@media screen and (max-width:1024px) {
 
-    h3 { font-size: 1.8em; }
-    button, input[type="submit"] { white-space: unset; }
+    .navbar.navbar-expand-lg {
+        padding-left: 0em;
+        padding-right: 0em;
+    }
 
-    #start-page > aside { flex: 0 0 50%; }
-    #start-page > aside > form > .p-submit { margin-bottom: 0.2em; }
+    #start-page > aside { flex: 0 0 40%; }
 
-    #register-page > form { width: 80%;}
-    #register-page > form > p { width: 70%; }
+    #register-page > form > p { width: 60%; }
+
+    .p-submit > input[type="submit"] { width: 12vw; }
+
 
     /*___ CONNECTED */
+    .btn-nav-user { width: 10vw;}
+
+    .arrow-begin { top: 12%; }
+
+    #virtual-modal > .modal-dialog > .modal-content { width: 90%; }
+    .modal-body > p { font-size: 1.1em; }
+    .modal-header { height: 9vh; }
+    .btn-projectLeft{
+        min-width: 17vw;
+        padding-left: 2em;
+        padding-right: 1em;
+    }
+    .btn-projectRight{
+        min-width: 17vw;
+        padding-left: 1em;
+        padding-right: 2em;
+     }
+
+    #modify-page > form { width: 60%; }
+    #modify-page > form > p { width: 60%; }
+    #modify-page > a { top: 7%; }
+
     .btn-user { width: 25vw;}
+
+    #sect-viewScroll, #sect-viewScrollFollow, #nav-create, .hidden-div { width: 70%; }
+
+    #sect-create {
+        width: 55%;
+        margin-top: 9%;
+    }
+
+    #user-parameter {
+        width: 14%;
+        left: 1vw;
+    }
+    #content-parameter { left: 1vw; }
+}
+
+
+
+@media screen and (max-width:768px) {
+
+    #li-nav-btnChoice { margin-right: 0.5em;}
+
+    h3 { font-size: 1.8em; }
+    button { white-space: unset; }
+
+    #start-page > aside { flex: 0 0 50%; }
+
+    #register-page > form { width: 80%; }
+    #register-page > form > p { width: 70%; }
+
+    .p-submit > input[type="submit"] { width: 15vw; }
+
+
+    /*___ CONNECTED */
+    .btn-nav-user { width: 12vw;}
+    .arrow-begin { top: 18%; }
+
+    #modify-page > form { width: 80%; }
 
     #sect-viewScroll, #sect-viewScrollFollow, #nav-create, .hidden-div { width: 90%; }
 
-    #user-parameter {
-        top: 17vh;
-        left: 1vw;
+    #sect-create {
+        width: 70%;
+        margin-top: 12%;
+    }
 
-        min-width: 18%;
-        height: 4vh;
-        padding-left: 0.5em;
-        padding-right: 0.5em;
-        font-size: 0.9em;
+    #user-parameter {
+        top: 7.5vh;
+        width: 18%;
+        font-size: 0.8em;
     }
     #content-parameter {
-        position: fixed;
-            top: 22vh;
-            left: 1vw;
+        display: inline-block;
+        top: 7vh;
+        left: 20vw;
+        height: inherit;
     }
+    #content-parameter > button {
+        margin-left: 2em;
+        font-size: 0.8em;
+    }
+}
+
+
+@media screen and (max-width:320px) {
+
+
+#li-nav-btnChoice { margin-right: 0;}
+
+#start-page > aside { flex: 0 0 50%; }
+
+#register-page > form { width: 80%; }
+#register-page > form > p { width: 70%; }
+
+.p-submit > input[type="submit"] { width: 15vw; }
+
+
+    /*___ CONNECTED */
+    .modal-body > p {
+        margin-top: 0.8em;
+        margin-bottom: 0.8em;
+        font-size: 1em;
+    }
+    .btn-nav-user {
+        width: 25vw;
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+.arrow-begin { top: 18%; }
+    .btn-user { width: 80vw;}
+#modify-page > form { width: 80%; }
+
+    #sect-viewScroll, #sect-viewScrollFollow { width: 100%; }
+    #sect-viewScroll { padding: 2%; }
+    #nav-create {
+        width: 100%;
+        height: 20vh;
+        margin-top: 15vh;
+        padding-left: 0.7em;
+        padding-right: 0.7em;
+    }
+    #nav-create > div {
+        height: 100%;
+        padding-bottom: 4vh;
+    }
+    .hidden-div {
+        width: 100%;
+        height: 20vh;
+        margin-top: 15vh;
+    }
+
+    .sect-viewReview-first, article > header {
+        display: flex;
+            flex-flow: column wrap;
+            align-items: flex-start;
+    }
+    .sect-viewReview span, .sect-viewReview time, .sect-viewReview p {
+
+        font-size: 0.8em;
+    }
+    article span, article time, article p {
+
+        font-size: 0.8em;
+    }
+    article > figure {
+        width: 100%;
+        margin-left: 0;
+    }
+    article > figure img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+    article > footer, .sect-viewReview > footer {
+        justify-content: space-around;
+        margin-bottom: 2%;
+    }
+
+    #follow_searching > h3 { font-size: 1.4em; }
+
+
+#sect-create {
+    width: 90%;
+    margin-top: 12%;
+}
+
+#user-parameter {
+    top: 7.5vh;
+    width: 18%;
+    font-size: 0.8em;
+}
+#content-parameter {
+    display: inline-block;
+    top: 7vh;
+    left: 20vw;
+    height: inherit;
+}
+#content-parameter > button {
+    margin-left: 2em;
+    font-size: 0.8em;
+}
 }
 

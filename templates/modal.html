@@ -3,9 +3,9 @@
 
 
 {% block user_env %}
-<div class="modal fade show" id="virtual-modal" tabindex="-1" aria-hidden="true" style="display: block;">
+<div class="modal fade show" id="virtual-modal" tabindex="-1" style="display: block;">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content mx-auto">
             <div class="modal-header d-flex justify-content-center align-items-center flex-nowrap">
                 <figure class="me-5 pb-2">
                     <img src="{% static 'img/books.png' %}" class="img-fluid" alt="Image d'un livre'">
@@ -18,7 +18,7 @@
                 </figure>
             </div>
             <div class="modal-body">
-                <p class="text-center">{{ text }} <strong>{{ name }}</strong></p>
+                <p class="text-center">{{ text }} <strong class="text-capitalize"> {{ name }}</strong></p>
 
                 <hr class="hr-60 mx-auto my-3">
 

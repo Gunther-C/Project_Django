@@ -2,7 +2,12 @@
 
 body{ background-color: rgba(245, 203, 142, 0.5); }
 
-.navbar.navbar-expand-lg { border-bottom: solid 0.06em brown; }
+.navbar.navbar-expand-lg {
+    padding-left: 1em;
+    padding-right: 1em;
+    border-bottom: solid 0.06em brown;
+}
+#li-nav-btnChoice { margin-right: 1.5em;}
 
 h1, h2, h3, th {
     margin: 0;
@@ -24,14 +29,14 @@ button, input[type="submit"] {
         justify-content: center;
         align-items: center;
 
-    padding: 0 1.4em 0.2em 1.4em;
+    min-width: 6vw;
 
     background-color: #ffffff;
     border: solid 0.06em transparent;
     border-radius: 3px;
+    box-shadow: 1px 2px 4px rgba(145, 142, 142, 0.854);
 
     white-space: nowrap;
-    box-shadow: 1px 2px 4px rgba(145, 142, 142, 0.854);
 }
 
 p {
@@ -75,24 +80,26 @@ form > figure img {
     cursor: pointer;
 }
 
-.btn-projectLeft{
+.btn-projectLeft {
+    min-width: 9vw;
+    margin-right: 0.5em;
+    padding-left: 3em;
+    padding-right: 1.5em;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    border-top-right-radius: unset;
-    border-bottom-right-radius: unset;
-    margin-right: 0.5em;
 }
-.btn-projectRight{
-    border-top-left-radius: unset;
-    border-bottom-left-radius: unset;
+.btn-projectRight {
+    min-width: 9vw;
+    margin-left: 0.5em;
+    padding-left: 1.5em;
+    padding-right: 3em;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-left: 0.5em;
 }
 
 
 /*___ TYPE DE LIGNE */
-hr.hr-60{ width: 60%; margin: 0;}
+hr.hr-60 { width: 60%; margin: 0;}
 
 
 /*___ FORMULAIRE D'AUTHENTIFICATION */
@@ -150,7 +157,6 @@ hr.hr-60{ width: 60%; margin: 0;}
 }
 
 
-
 /*___ PAGE D'INSCRIPTION' */
 #register-page {
     display: flex;
@@ -178,21 +184,68 @@ hr.hr-60{ width: 60%; margin: 0;}
 }
 
 
+/*___ PAGES DE MODIFICATION */
+#modify-page {
+    display: flex;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: center;
+
+    width: 100%;
+
+    margin-top: 6vh;
+    margin-bottom: 11vh;
+}
+#modify-page > form { width: 40%;}
+#modify-page > form > p { width: 60%; }
+
+#modify-page > form > #password-infos {
+    width: 90%;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    font-size: 0.8em;
+}
+#modify-page > form > #email-infos {
+    width: 50%;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+ }
+
+
+/*__ Soumission des formulaires */
 .p-submit {
     display: flex;
         justify-content: flex-end;
+        align-items: center;
+    margin-bottom: 0.2em;
 }
-.p-submit > input[type="submit"] { text-align: right }
+.p-submit > input[type="submit"] {
+    width: 10vw;
+    text-align: right
+}
 
 
 
 /*___ MODAL */
 #virtual-modal > .modal-dialog > .modal-content {
+    background-color: unset;
+    border: unset;
+}
+.modal-body > p {
+    margin-top: 1.2em;
+    margin-bottom: 1.2em;
+    font-size: 1.2em;
+}
+.modal-header {
+    height: 10vh;
+    background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
 }
-
-.modal-header { height: 10vh; }
 .modal-header > figure {
     display: flex;
         justify-content: center;

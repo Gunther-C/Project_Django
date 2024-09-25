@@ -28,7 +28,6 @@
 }
 
 
-
 /*___ SECTION CHEMIN DES VUES (ticket, critique */
 #user-index > section {
     display: flex;
@@ -48,7 +47,6 @@
     width: 20%;
     height: 30vh;
 }
-
 #user-index > #figure_clone > img {
     max-width: 100%;
     max-height: 100%;
@@ -58,6 +56,8 @@
 /*___ navBar principale utilisateur */
 .btn-nav-user { width: 8vw;}
 
+
+
 /*___ paramètres utilisateur */
 #user-parameter {
     display: flex;
@@ -66,15 +66,10 @@
         align-items: center;
 
     position: fixed;
-        top: 20vh;
+        top: 24vh;
         left: 2vw;
 
-    max-width: 20%;
-    min-width: 12%;
-    height: 5vh;
-
-    padding-left: 2em;
-    padding-right: 2em;
+    width: 10%;
 
     background-color: #ffffff;
     border-right: solid 0.06em brown;
@@ -105,12 +100,16 @@
         justify-content: space-around;
 
     position: fixed;
-        top: 27vh;
-        left: 5vw;
+        top: 30vh;
+        left: 2vw;
 
     height: 14vh;
+    padding: 0;
+
 }
 #content-parameter > button {
+    padding: 0.1em 1.5em;
+    margin: 0;
     background-color: #ffffff;
     border: solid 0.06em brown;
     border-bottom-right-radius: 10px;
@@ -126,13 +125,12 @@
     border-left: solid 0.08em brown;
     border-right: solid 0.08em brown;
 }
-
 #nav-create {
     position: fixed;
         top: 0;
 
     width: 60%;
-    height: 14vh;
+    height: 18vh;
     margin-top: 6vh;
     padding-left: 0.5em;
     padding-right: 0.5em;
@@ -144,11 +142,10 @@
 }
 .hidden-div {
     width: 60%;
-    height: 14vh;
+    height: 18vh;
     margin-top: 6vh;
     background-color: #ffffff;
 }
-
 
 /*___ BALISE TICKET */
 article {
@@ -165,7 +162,6 @@ article {
     background-color: #ffffff;
     box-shadow: 2px 3px 6px rgba(145, 142, 142, 0.854);
 }
-
 article > header {
     display: flex;
         flex-flow: row nowrap;
@@ -185,7 +181,6 @@ article > p {
     border: solid 0.006em rgba(236, 244, 253, 0.8);
     border-radius: 4px;
 }
-
 article > figure {
     display: flex;
         justify-content: center;
@@ -197,7 +192,6 @@ article > figure img {
     max-width: 100%;
     max-height: 20vh;
 }
-
 article > footer {
     display: flex;
         flex-flow: row nowrap;
@@ -224,7 +218,12 @@ article > footer {
     background-color: #ffffff;
     box-shadow: inset 4px 3px 8px 3px rgba(145, 142, 142, 0.5);
 }
-
+.sect-viewReview-first {
+    display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+}
 .sect-viewReview > header, .sect-viewReview > footer {
     width: 100%;
     margin-bottom: 2%;
@@ -239,24 +238,38 @@ article > footer {
     border: solid 0.006em rgba(236, 244, 253, 0.8);
     border-radius: 4px;
 }
-
 .sect-viewReview article {
     width: 90%;
 
 }
+.sect-viewReview > footer {
+    display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        align-items: center;
+    width: 100%;
+    margin-top: 2%;
+}
 
+
+/* //___ CREATION */
+#sect-create {
+    width: 35%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+#sect-create > form { width: 100%; }
+#sect-create > form input[type="file"] { width: 50%; }
+#sect-create > form > h5 { text-decoration: underline; }
 
 
 /* //___ ABONNÉES */
-
 /*___ vues (follows) */
 #sect-viewScrollFollow {
     width: 50%;
-    margin-bottom: 5%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    margin-top: 5%;
+    margin-bottom: 10%;
 }
-
 /*___ recherche */
 #follow-users-searching {
     width: 98%;
@@ -269,6 +282,10 @@ article > footer {
     overflow: hidden;
     overflow-y: auto;
 }
+
+
+
+
 .follow-create{
     justify-content: flex-start;
 

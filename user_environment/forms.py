@@ -12,7 +12,7 @@ class NewTicket(forms.ModelForm):
         widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '6', 'maxlength': '2000'}),
         label='Votre demande'
     )
-    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control form-control-sm w-50'}),
+    image = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control form-control-sm'}),
                              required=False)
 
     class Meta:
