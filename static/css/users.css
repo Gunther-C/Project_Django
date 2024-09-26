@@ -54,8 +54,7 @@
 
 
 /*___ navBar principale utilisateur */
-.btn-nav-user { width: 8vw;}
-
+#nav-user .btn-nav-user { width: 8vw;}
 
 
 /*___ paramètres utilisateur */
@@ -128,7 +127,6 @@
 #nav-create {
     position: fixed;
         top: 0;
-
     width: 60%;
     height: 18vh;
     margin-top: 6vh;

@@ -116,7 +116,6 @@ $(document).ready(function() {
         $(`#content-btn-nav-user`).appendTo(`#nav-user`);
         $(`#sect-viewScrollFollow > header`).removeClass(`my-5`).addClass(`mt-5`) ;
     }
-    // else { $(`.nav-dom`).appendTo(`#nav-user`) }
 
     _rating();
 
