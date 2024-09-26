@@ -260,6 +260,7 @@ article > footer {
 }
 #sect-create > form { width: 100%; }
 #sect-create > form input[type="file"] { width: 50%; }
+#sect-create > form #rating { margin-right: 1.5em; }
 #sect-create > form > h5 { text-decoration: underline; }
 
 
@@ -282,8 +283,6 @@ article > footer {
     overflow: hidden;
     overflow-y: auto;
 }
-
-
 
 
 .follow-create{

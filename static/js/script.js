@@ -111,6 +111,13 @@ function _rating() {
 (function($) {
 $(document).ready(function() {
 
+    let WidthBody = parseFloat($('body').css('width'));
+    if (WidthBody < 426) {
+        $(`#content-btn-nav-user`).appendTo(`#nav-user`);
+        $(`#sect-viewScrollFollow > header`).removeClass(`my-5`).addClass(`mt-5`) ;
+    }
+    // else { $(`.nav-dom`).appendTo(`#nav-user`) }
+
     _rating();
 
     _btnUserNav();
@@ -226,7 +233,7 @@ $(document).ready(function() {
             let parent = $(this).parent();
             if ($(`.register-help`).is(`:visible`)) $(`.register-help`).detach();
 
-            parent.after(`<div class="register-help alert alert-primary d-flex align-items-center justify-content-center w-75 mx-auto mb-5 py-1" role="alert">
+            parent.after(`<div class="register-help alert alert-primary d-flex align-items-center justify-content-center mx-auto mb-5 py-1" role="alert">
                     <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 text-primary"></i>
                     <ul>
                         <li>Requis. Votre nom utilisateur doit être unique et contenir moins de 50 caractères,</li>
@@ -243,7 +250,7 @@ $(document).ready(function() {
             let parent = $(this).parent();
             if ($(`.register-help`).is(`:visible`)) $(`.register-help`).detach();
 
-            parent.after(`<div class="register-help alert alert-primary d-flex align-items-center justify-content-center w-75 mx-auto mb-5 py-1" role="alert">
+            parent.after(`<div class="register-help alert alert-primary d-flex align-items-center justify-content-center mx-auto mb-5 py-1" role="alert">
                     <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2 text-primary"></i>
                     <ul>
                         <li>Votre ancien mot de passe est incorrect. Veuillez réessayer.</li>

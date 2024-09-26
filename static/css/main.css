@@ -7,7 +7,7 @@ body{ background-color: rgba(245, 203, 142, 0.5); }
     padding-right: 1em;
     border-bottom: solid 0.06em brown;
 }
-#li-nav-btnChoice { margin-right: 1.5em;}
+.navbar.navbar-expand-lg .nav-dom { padding-right: 6em;}
 
 h1, h2, h3, th {
     margin: 0;
@@ -136,6 +136,7 @@ hr.hr-60 { width: 60%; margin: 0;}
     min-height: 23vh;
 }
 #start-page > aside > form > p { width: 80%; }
+#start-page > aside > .static-alert { width: 75%;}
 
 #start-page > section {
     flex: 0 0 40%;
@@ -169,8 +170,9 @@ hr.hr-60 { width: 60%; margin: 0;}
     margin-top: 6vh;
     margin-bottom: 11vh;
 }
-#register-page > form { width: 60%;}
-#register-page > form > p { width: 40%; }
+#register-page > form { width: 50%;}
+#register-page > form > p { width: 50%; }
+#register-page > form > .register-help { width: 75%; }
 
 .register-username-infos, .register-password-infos {
     pointer-events: none;
