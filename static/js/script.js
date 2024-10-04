@@ -152,13 +152,13 @@ $(document).ready(function() {
         if ($(`#empty_search`).is(`:visible`)) $(`#empty_search`).detach();
 
         let text = $(this).val();
-        let child_last = $(this).next();
 
         if (text.length > 2) {
 
             const Search_ = _searching(text).then((response) => {
 
-                if (Object.keys(response).length < 1) {
+
+                if (Object.keys(response).length < 1 || Object.keys(response) == `errors`) {
 
                     $(`#follow_searching`).append(`
                         <div id="empty_search" class="alert alert-warning d-flex align-items-center justify-content-center w-75 mx-auto mt-4 px-3 py-1" role="alert">

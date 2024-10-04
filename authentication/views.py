@@ -23,7 +23,7 @@ def registration(request):
         else:
             for field, errors in form.errors.items():
                 for error in errors:
-                    messages.add_message(self.request, messages.WARNING, f"{error}")
+                    messages.add_message(request, messages.WARNING, f"{error}")
             form.errors.clear()
 
     else:

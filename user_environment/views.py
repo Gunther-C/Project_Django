@@ -41,7 +41,7 @@ def searching(request):
 
             return JsonResponse(response)
 
-        return JsonResponse({'status': 'errors'})
+        return JsonResponse({'errors': 'errors'})
 
 
 class UserFluxView(ListView):
@@ -222,7 +222,7 @@ class TicketUpdateView(SuccessMessageMixin, UpdateView):
     success_message = "Votre ticket est modifié"
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Ticket, pk=self.kwargs.get('pk'))
+        return get_object_or_404(Ticket, user=self.request.user,  pk=self.kwargs.get('pk'))
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -239,7 +239,7 @@ class ReviewUpdateView(SuccessMessageMixin, UpdateView):
     success_message = "Votre critique est modifiée"
 
     def get_object(self, queryset=None):
-        return get_object_or_404(Review, pk=self.kwargs.get('pk'))
+        return get_object_or_404(Review, user=self.request.user,  pk=self.kwargs.get('pk'))
 
     def get_context_data(self, **kwargs):
         kwargs['return_url'] = reverse('env:user-posts')

@@ -4,5 +4,4 @@ exclude =
     .venv,
     */migrations/*,
     */tests.py,
-    */apps.py,
-    memo.py
+    */apps.py

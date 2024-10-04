@@ -2,7 +2,7 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %} d-flex align-items-center justify-content-center w-75 mx-auto mt-4 px-3 py-1" role="alert">
+    <div class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %} d-flex align-items-center justify-content-center w-75 mx-auto mt-1 px-3 py-1" role="alert">
         {% if message.tags == 'success' %}
             <i class="bi bi-check-circle-fill flex-shrink-0 me-2 text-{{ message.tags }}"></i>
         {% else %}
